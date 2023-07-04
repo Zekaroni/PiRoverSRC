@@ -1,7 +1,6 @@
+import pygame
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
-import pygame
-from time import sleep
 
 class Controller:
     def __init__(self):
