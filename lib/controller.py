@@ -1,4 +1,4 @@
-from ds4drv import DS4drv
+from ds4drv.device import DS4Device
 import time
 
 def handle_event(event):
@@ -12,11 +12,11 @@ def handle_event(event):
 def search_for_controller():
     while True:
         try:
-            ds4 = DS4drv(callback=handle_event)
+            ds4 = DS4Device(callback=handle_event)
             ds4.start()
             print("DS4 controller found. Listening for events...")
             while True:
-                time.sleep(1)
+                time.sleep(1)  # Keep the script running to receive events
         except:
             print("DS4 controller not found. Retrying in 5 seconds...")
             time.sleep(5)
