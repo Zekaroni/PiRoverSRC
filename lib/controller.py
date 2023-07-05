@@ -1,25 +1,26 @@
-from ds4drv.device import DS4Device
-import time
+import evdev
+
+def find_ds4_controller():
+    devices = [evdev.InputDevice(path) for path in evdev.list_devices()]
+    for device in devices:
+        if "Wireless Controller" in device.name:
+            return device
+    return None
 
 def handle_event(event):
-    if event.event_type == "button_press":
-        print("Button Pressed:", event.button)
-    elif event.event_type == "button_release":
-        print("Button Released:", event.button)
-    elif event.event_type == "axis_motion":
-        print("Axis Motion:", event.axis, event.value)
+    print(event)
 
-def search_for_controller():
-    while True:
-        try:
-            ds4 = DS4Device(callback=handle_event)
-            ds4.start()
-            print("DS4 controller found. Listening for events...")
-            while True:
-                time.sleep(1)  # Keep the script running to receive events
-        except:
-            print("DS4 controller not found. Retrying in 5 seconds...")
-            time.sleep(5)
+# Find the DS4 controller
+ds4 = find_ds4_controller()
 
-# Start the search loop
-search_for_controller()
+if ds4 is not None:
+    print("DS4 controller found:", ds4.name)
+
+    # Create an event device for the DS4 controller
+    device = evdev.InputDevice(ds4.path)
+
+    # Read events from the DS4 controller
+    for event in device.read_loop():
+        handle_event(event)
+else:
+    print("DS4 controller not found.")
