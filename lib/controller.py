@@ -19,6 +19,14 @@ def handle_event(event):
             print("Left Stick X-axis:", event.value)
         elif event.code == evdev.ecodes.ABS_Y:
             print("Left Stick Y-axis:", event.value)
+        elif event.code == evdev.ecodes.ABS_RX:
+            print("Right Stick X-axis:", event.value)
+        elif event.code == evdev.ecodes.ABS_RY:
+            print("Right Stick Y-axis:", event.value)
+        elif event.code == evdev.ecodes.ABS_Z:  # Left trigger
+            print("Left Trigger:", event.value)
+        elif event.code == evdev.ecodes.ABS_RZ:  # Right trigger
+            print("Right Trigger:", event.value)
 
 # Find the DS4 controller
 ds4 = find_ds4_controller()
