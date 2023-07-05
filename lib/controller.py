@@ -1,4 +1,4 @@
-from ds4drv import DS4Dev
+from ds4drv import DS4Device
 import time
 import threading
 from queue import Queue
@@ -22,8 +22,7 @@ def event_handling_thread(ds4dev, result_queue):
     for event in ds4dev.events():
         handle_event(event, result_queue)
 
-# Create a DS4Dev object
-ds4dev = DS4Dev()
+ds4dev = DS4Device()
 
 # Find the DS4 controller
 ds4dev.find_ds4()
