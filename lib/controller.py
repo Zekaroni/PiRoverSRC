@@ -16,9 +16,9 @@ def handle_event(event, result_queue):
     if event.type == evdev.ecodes.EV_KEY:
         key_event = evdev.categorize(event)
         if key_event.keystate == 1:  # Key press event
-            result_queue.put("Button Pressed: " + key_event.keycode)
+            result_queue.put("Button Pressed: " + str(key_event.keycode))
         elif key_event.keystate == 0:  # Key release event
-            result_queue.put("Button Released: " + key_event.keycode)
+            result_queue.put("Button Released: " + str(key_event.keycode))
     # elif event.type == evdev.ecodes.EV_ABS:
     #     if event.code == evdev.ecodes.ABS_X:
     #         result_queue.put("Left Stick X-axis: " + str(event.value))
