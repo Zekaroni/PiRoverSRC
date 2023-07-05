@@ -8,7 +8,17 @@ def find_ds4_controller():
     return None
 
 def handle_event(event):
-    print(event)
+    if event.type == evdev.ecodes.EV_KEY:
+        key_event = evdev.categorize(event)
+        if key_event.keystate == 1:  # Key press event
+            print("Button Pressed:", key_event.keycode)
+        elif key_event.keystate == 0:  # Key release event
+            print("Button Released:", key_event.keycode)
+    elif event.type == evdev.ecodes.EV_ABS:
+        if event.code == evdev.ecodes.ABS_X:
+            print("Left Stick X-axis:", event.value)
+        elif event.code == evdev.ecodes.ABS_Y:
+            print("Left Stick Y-axis:", event.value)
 
 # Find the DS4 controller
 ds4 = find_ds4_controller()
