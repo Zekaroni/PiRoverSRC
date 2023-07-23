@@ -1,3 +1,4 @@
 lib/__pycache__
 .venv
 src/controller
+src/connectpi.sh

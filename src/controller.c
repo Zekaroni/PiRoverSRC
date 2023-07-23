@@ -7,7 +7,7 @@ int DEADZONE = 10;
 
 int main()
 {
-    int fd = open("/dev/input/event18", O_RDONLY);
+    int fd = open("/dev/input/event25", O_RDONLY);
     if (fd < 0)
     {
         printf("E Controller not found\n");
