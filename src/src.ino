@@ -4,7 +4,7 @@
 /*
 NOTES:
     - The reason some information that will only populate a couple bits uses an entire byte is because
-    with most cpu architecture, it is harder to manipulate data underthing since the cpu is built to
+    with most cpu architecture, it is harder to manipulate data since the cpu is built to
     interact with at least a byte.
     - When using .run(), the predefined values for FORWARD and BACKWARD are 1 and 2 respective.
     - When rewritting, I decided to leave
